@@ -1,0 +1,203 @@
+/* Stili di base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  overflow-y: hidden;
+}
+/* Stili per lo schermo di caricamento */
+#loadingScreen {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+    to bottom,
+    #1f363d,
+    #25424b,
+    #2b4e59,
+    #315a68,
+    #376777,
+    #3c7180,
+    #427b89,
+    #488592,
+    #508e96,
+    #5a979a,
+    #64a09e,
+    #70a9a1
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#loadingScreen .hit,
+#loadingScreen .hole {
+  font-size: 60px;
+  color: #1ceb0d;
+  font-family: "Pixelify Sans", sans-serif;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+#loadingScreen .the {
+  font-size: 30px;
+  color: #1ceb0d;
+  font-family: "Pixelify Sans", sans-serif;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+/* Stili per il menu di gioco */
+#mainMenu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    #1f363d,
+    #25424b,
+    #2b4e59,
+    #315a68,
+    #376777,
+    #3c7180,
+    #427b89,
+    #488592,
+    #508e96,
+    #5a979a,
+    #64a09e,
+    #70a9a1
+  );
+  display: flex; /* Aggiunto per attivare il layout flex */
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  z-index: 10;
+  animation: gradient 4s ease infinite;
+  background-size: 400% 400%;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+#mainMenu .gameTitle {
+  font-size: 40px;
+  color: #1ceb0d;
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+#mainMenu .startText,
+#mainMenu .creditsLink,
+#mainMenu .recordLink,
+#mainMenu .howToPlay {
+  font-size: 26px;
+  color: #1ceb0d;
+  font-family: "Pixelify Sans", sans-serif;
+  cursor: pointer;
+}
+
+#gameContainer {
+  display: none;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 1px;
+}
+
+.game-square {
+  width: 50px;
+  height: 50px;
+  background-color: #ddd;
+  border: 1px solid black;
+}
+
+/* Stili per il cerchio del conto alla rovescia */
+#countdownCircle {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+/* Stile per il timer del gioco */
+#gameTimer {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 25px;
+  color: #1ceb0d;
+  display: none; /* Inizialmente nascosto */
+}
+
+/* Stile per il conteggio punti del gioco */
+#gameScore {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  font-size: 25px;
+  color: #1ceb0d;
+  display: none; /* Inizialmente nascosto */
+  /* Altri stili come colore, sfondo, ecc. */
+}
+
+/*stile della linea*/
+#line {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  width: 5px; /* Spessore della linea */
+  background-color: yellow;
+  transform-origin: bottom;
+  transform: translateX(-50%) rotate(0deg); /* Posizione iniziale */
+}
+
+/*water*/
+#target {
+  position: absolute;
+  width: 50px; /* Dimensione iniziale */
+  height: auto; /* Mantiene le proporzioni dell'immagine */
+  /* Posizione iniziale: definire top e left */
+  top: 50px;
+  right: 300px;
+}
+
+/*bottone di permesso al utilizzo del giroscopio*/
+#requestPermissionButton {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 8px 14px; /* Dimensione più grande per facilitare il tocco */
+  background-color: #4caf50; /* Colore di sfondo verde */
+  color: white; /* Testo bianco */
+  border: none; /* Nessun bordo */
+  border-radius: 10px; /* Angoli arrotondati */
+  font-size: 10px; /* Testo più grande per una migliore leggibilità */
+  cursor: pointer; /* Indica che è cliccabile (utile per browser desktop) */
+  transition: background-color 0.3s ease; /* Transizione fluida per il colore di sfondo */
+  text-align: center; /* Allinea il testo al centro */
+  user-select: none; /* Impedisce la selezione del testo sul bottone */
+}
+
+#requestPermissionButton:active {
+  background-color: #45a049; /* Cambia colore quando è premuto */
+}
