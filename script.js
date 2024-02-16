@@ -36,6 +36,7 @@ function prepareGameContainer() {
 
   createBackgroundSquares(gameContainer);
   initializeCountdown(); // startGameAfterCountdown() sarà chiamata da qui
+  setInterval(placeTargetRandomly, 5000);
 }
 
 function createBackgroundSquares(container) {
@@ -141,13 +142,44 @@ function howToPlay() {
   // Logica per mostrare il regolamento
 }
 
+// Funzione per mostrare i crediti
 function showCredits() {
-  // Logica per mostrare i crediti
+  document.getElementById("mainMenu").style.display = "none"; // Nascondi il menu principale
+  document.getElementById("creditsSection").style.display = "flex"; // Mostra i crediti
 }
+// Funzione per nascondere i crediti e tornare al menu principale
+function hideCredits() {
+  document.getElementById("creditsSection").style.display = "none"; // Nascondi i crediti
+  document.getElementById("mainMenu").style.display = "flex"; // Mostra il menu principale
+}
+// Aggiungi l'event listener al bottone di uscita nella sezione dei crediti
+document
+  .getElementById("exitCreditsButton")
+  .addEventListener("touchend", hideCredits);
 
 function showRecords() {
   // Logica per mostrare i record delle partite
 }
+
+// Funzione per mostrare la sezione How To Play
+function showHowToPlay() {
+  document.getElementById("mainMenu").style.display = "none"; // Nascondi il menu principale
+  document.getElementById("howToPlaySection").style.display = "flex"; // Mostra How To Play
+}
+
+// Funzione per nascondere la sezione How To Play e tornare al menu principale
+function hideHowToPlay() {
+  document.getElementById("howToPlaySection").style.display = "none"; // Nascondi How To Play
+  document.getElementById("mainMenu").style.display = "flex"; // Mostra il menu principale
+}
+
+// Aggiungi gli event listener ai bottoni
+document
+  .getElementById("howtoplay")
+  .addEventListener("touchend", showHowToPlay);
+document
+  .getElementById("exitHowToPlayButton")
+  .addEventListener("touchend", hideHowToPlay);
 
 /*API per il giroscopio */
 var permissionButton = document.getElementById("requestPermissionButton");
@@ -187,7 +219,7 @@ function handleOrientation(event) {
 
   var line = document.getElementById("line");
   var rotationDeg = gamma;
-  var length = Math.max(200, 200 + beta * 4);
+  var length = Math.max(200, 200 + beta * 5);
 
   line.style.transform = `translateX(-50%) rotate(${rotationDeg}deg)`;
   line.style.height = `${length}px`;

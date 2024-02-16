@@ -92,6 +92,151 @@ body {
     background-position: 100% 50%;
   }
 }
+#howToPlaySection {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, #1f363d, #70a9a1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  z-index: 100; /* Assicurati che sia sopra al mainMenu */
+  font-size: 40px;
+  color: darkgrey;
+  font-family: "Pixelify Sans", sans-serif;
+}
+#howToPlaySection h2 {
+  color: #1ceb0d;
+}
+
+#exitHowToPlayButton {
+  /* Gli stili sono simili a quelli dell'exitCreditsButton per coerenza */
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: grey;
+  color: white;
+  font-size: 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Per dispositivi touch, puoi anche aggiungere uno stile per quando il bottone è attivo */
+#exitHowToPlayButton:active {
+  background-color: darkgrey;
+}
+
+/* Regola responsiva per mobile, come nel caso di #exitCreditsButton */
+@media (max-width: 600px) {
+  #exitHowToPlayButton {
+    font-size: 3vh;
+    padding: 1.5vh 3vh;
+    bottom: 3vh;
+    right: 3vh;
+  }
+
+  #howToPlaySection h1 {
+    font-size: 4.5vh; /* Riduci la dimensione del titolo per dispositivi più piccoli */
+    color: #1ceb0d;
+  }
+  #howToPlaySection h2 {
+    font-size: 2vh;
+  }
+  #howToPlaySection ul li {
+    padding-left: 1vh;
+    padding-right: 1vh;
+    font-size: 2vh; /* Riduci la dimensione degli elementi della lista */
+    color: black;
+  }
+}
+
+#creditsSection {
+  /* Applica stili simili a #mainMenu per coerenza */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, #1f363d, #70a9a1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  z-index: 100; /* Assicurati che sia sopra al mainMenu */
+  font-size: 40px;
+  color: #1ceb0d;
+  font-family: "Pixelify Sans", sans-serif;
+}
+#creditsSection h1 {
+  font-size: 6vh; /* Dimensione del titolo proporzionale all'altezza della viewport */
+  margin-bottom: 2vh;
+}
+#creditsSection h2 {
+  font-size: 4vh; /* Dimensione degli header proporzionale all'altezza della viewport */
+}
+#creditsSection ul {
+  padding: 0;
+  list-style: none;
+}
+#creditsSection ul li {
+  font-size: 3.5vh; /* Dimensione degli elementi della lista proporzionale all'altezza della viewport */
+  margin: 1vh 0; /* Spazio tra gli elementi della lista */
+}
+/* Utilizza una media query per dispositivi con larghezza fino a 600px (smartphone) */
+@media (max-width: 600px) {
+  #creditsSection {
+    gap: 3vh; /* Riduci il gap su dispositivi piccoli */
+  }
+
+  h1 {
+    font-size: 5vh; /* Riduci la dimensione del titolo per dispositivi più piccoli */
+  }
+
+  h2 {
+    font-size: 3.5vh; /* Riduci la dimensione degli header per dispositivi più piccoli */
+  }
+
+  ul li {
+    font-size: 3vh; /* Riduci la dimensione degli elementi della lista */
+  }
+}
+
+#exitCreditsButton {
+  position: absolute;
+  font-family: "Pixelify Sans", sans-serif;
+  bottom: 20px; /* Distanza dal fondo della pagina */
+  right: 20px; /* Distanza dal lato destro della pagina */
+  padding: 10px 20px; /* Spaziatura interna per rendere il bottone più grande */
+  background-color: grey; /* Colore di sfondo grigio */
+  color: white; /* Colore del testo bianco */
+  font-size: 40px; /* Dimensione del testo */
+  border: none; /* Nessun bordo */
+  border-radius: 5px; /* Bordi leggermente arrotondati */
+  cursor: pointer; /* Cambia il cursore a una mano quando è sopra al bottone */
+  transition: background-color 0.3s ease; /* Transizione morbida per il background-color */
+}
+
+/* Per dispositivi touch, puoi anche aggiungere uno stile per quando il bottone è attivo */
+#exitCreditsButton:active {
+  background-color: darkgrey; /* Cambia colore quando il bottone è premuto */
+}
+/* Utilizza una media query per dispositivi con larghezza fino a 600px (smartphone) */
+@media (max-width: 600px) {
+  #exitCreditsButton {
+    font-size: 4vh; /* Riduci la dimensione del testo per dispositivi più piccoli */
+    padding: 1.5vh 3vh; /* Aggiusta la spaziatura interna */
+    bottom: 5vh; /* Aumenta la visibilità sul fondo */
+    right: 5vh; /* Aumenta la visibilità sul lato destro */
+  }
+}
 
 #mainMenu .gameTitle {
   font-size: 40px;
