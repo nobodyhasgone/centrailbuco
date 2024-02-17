@@ -1,3 +1,9 @@
+// Inizializzazione delle tracce audio
+var menuMusic = new Audio("./music/573_full_racer-8bit_0158_preview.mp3"); // Percorso della musica del menu
+var gameMusic = new Audio("./music/urinate_standing_cut.mp3"); // Percorso della musica di gioco
+var audioEnabled = true; // Stato iniziale dell'audio
+var audio; // Variabile globale per l'audio della partita
+
 // Funzione per mostrare lo schermo di caricamento
 function showLoadingScreen() {
   document.getElementById("loadingScreen").style.display = "flex";
@@ -87,9 +93,12 @@ function startGameAfterCountdown() {
   var gameTimer = document.getElementById("gameTimer");
   var timeLeft = 30; // Durata del timer in secondi
 
-  // Crea un nuovo oggetto Audio
-  var audio = new Audio("./music/urinate_standing_cut.mp3"); // Sostituisci con il percorso corretto
-  audio.play(); // Inizia la riproduzione dell'audio
+  // Assegna l'audio della partita alla variabile globale
+  audio = new Audio("./music/urinate_standing_cut.mp3");
+
+  if (audioEnabled) {
+    audio.play();
+  }
 
   gameTimer.innerText = `Tempo: ${timeLeft}s`;
   gameTimer.style.display = "block"; // Rende visibile il timer
@@ -101,8 +110,7 @@ function startGameAfterCountdown() {
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       gameTimer.style.display = "none"; // Nasconde il timer
-      audio.pause(); // Interrompe la riproduzione dell'audio
-      // Aggiungi qui la logica alla fine del tempo
+      endGame(); // Chiama la funzione di fine gioco
     }
   }, 1000);
 }
@@ -228,15 +236,14 @@ function handleOrientation(event) {
   line.style.height = `${length}px`;
 }
 
-// Inizializzazione delle tracce audio
-var menuMusic = new Audio("./music/573_full_racer-8bit_0158_preview.mp3"); // Percorso della musica del menu
-var gameMusic = new Audio("./music/urinate_standing_cut.mp3"); // Percorso della musica di gioco
-var audioEnabled = true; // Stato iniziale dell'audio
-
 // Funzione per aggiornare lo stato dell'audio
-function updateAudioState() {
+function updateAudioState(playMenu = true) {
   if (audioEnabled) {
-    menuMusic.play();
+    if (playMenu) {
+      menuMusic.play();
+    } else {
+      gameMusic.play();
+    }
   } else {
     menuMusic.pause();
     gameMusic.pause();
@@ -248,12 +255,41 @@ document
   .getElementById("audioControlButton")
   .addEventListener("touchend", function () {
     audioEnabled = !audioEnabled; // Cambia lo stato dell'audio
-    updateAudioState(); // Aggiorna lo stato dell'audio
+    updateAudioState(
+      document.getElementById("mainMenu").style.display !== "none"
+    );
   });
+
+function endGame() {
+  // Interrompe la riproduzione della musica di gioco e del menu
+  menuMusic.pause();
+  gameMusic.pause();
+  menuMusic.currentTime = 0;
+  gameMusic.currentTime = 0;
+
+  // Mostra la schermata di game over
+  var gameOverScreen = document.getElementById("gameOverScreen");
+  gameOverScreen.style.display = "flex";
+
+  // Nasconde il container di gioco
+  document.getElementById("gameContainer").style.display = "none";
+
+  // Imposta i valori finali di tempo e punteggio
+  document.getElementById("finalTime").textContent = `Time: 00 sec`;
+  document.getElementById("finalScore").textContent = `Score: ${currentScore}`;
+
+  // Dopo 3 secondi, nasconde la schermata di game over e mostra il menu
+  setTimeout(function () {
+    gameOverScreen.style.display = "none";
+    document.getElementById("mainMenu").style.display = "flex";
+    updateAudioState(); // Riproduce la musica del menu se l'audio è abilitato
+  }, 3000);
+}
 
 // Avvia lo schermo di caricamento quando la pagina è completamente caricata
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("requestPermissionButton").style.display = "none";
   showLoadingScreen();
+  // Avvia l'audio del menu solo se l'audio è abilitato e il gioco non è attivo
   updateAudioState();
 });

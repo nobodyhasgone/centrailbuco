@@ -354,3 +354,27 @@ body {
 #requestPermissionButton:active {
   background-color: #45a049; /* Cambia colore quando è premuto */
 }
+
+#gameOverScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: grey; /* o qualsiasi altro colore desideri */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: red; /* per il testo GAME OVER */
+  z-index: 1000; /* Assicurati che sia al di sopra di altri elementi */
+}
+
+#gameOverScreen h1 {
+  font-size: 8vh; /* Regola a seconda delle tue esigenze */
+}
+
+#gameOverScreen p {
+  font-size: 3vh; /* Regola a seconda delle tue esigenze */
+  color: green; /* per il testo del tempo e del punteggio */
+}
