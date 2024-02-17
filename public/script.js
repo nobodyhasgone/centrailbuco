@@ -22,8 +22,11 @@ function startGame() {
   // Nasconde il menu principale
   document.getElementById("mainMenu").style.display = "none";
   if (navigator.userAgent.includes("iPhone")) {
-    alert("permetti centra il buco di farti fare la pipì");
     requestPermission();
+  }
+  if (audioEnabled) {
+    menuMusic.pause();
+    gameMusic.play();
   }
 
   prepareGameContainer(); // initializeCountdown(); sarà chiamata da qui
@@ -85,7 +88,7 @@ function startGameAfterCountdown() {
   var timeLeft = 30; // Durata del timer in secondi
 
   // Crea un nuovo oggetto Audio
-  var audio = new Audio("./music/urinate_standing-final-cut.mp3"); // Sostituisci con il percorso corretto
+  var audio = new Audio("./music/urinate_standing_cut.mp3"); // Sostituisci con il percorso corretto
   audio.play(); // Inizia la riproduzione dell'audio
 
   gameTimer.innerText = `Tempo: ${timeLeft}s`;
@@ -225,8 +228,32 @@ function handleOrientation(event) {
   line.style.height = `${length}px`;
 }
 
+// Inizializzazione delle tracce audio
+var menuMusic = new Audio("./music/573_full_racer-8bit_0158_preview.mp3"); // Percorso della musica del menu
+var gameMusic = new Audio("./music/urinate_standing_cut.mp3"); // Percorso della musica di gioco
+var audioEnabled = true; // Stato iniziale dell'audio
+
+// Funzione per aggiornare lo stato dell'audio
+function updateAudioState() {
+  if (audioEnabled) {
+    menuMusic.play();
+  } else {
+    menuMusic.pause();
+    gameMusic.pause();
+  }
+}
+
+// Event listener per il bottone dell'audio
+document
+  .getElementById("audioControlButton")
+  .addEventListener("touchend", function () {
+    audioEnabled = !audioEnabled; // Cambia lo stato dell'audio
+    updateAudioState(); // Aggiorna lo stato dell'audio
+  });
+
 // Avvia lo schermo di caricamento quando la pagina è completamente caricata
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("requestPermissionButton").style.display = "none";
   showLoadingScreen();
+  updateAudioState();
 });

@@ -253,7 +253,15 @@ body {
   font-family: "Pixelify Sans", sans-serif;
   cursor: pointer;
 }
-
+#audioControlButton {
+  /* Stili per il bottone dell'audio */
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 #gameContainer {
   display: none;
   grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
