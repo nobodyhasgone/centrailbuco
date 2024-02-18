@@ -113,10 +113,13 @@ function startGameAfterCountdown() {
       endGame(); // Chiama la funzione di fine gioco
     }
   }, 1000);
+  updateScore();
 }
 
 /*logica punteggio*/
 var currentScore = 0;
+let isTouching = false;
+let lineEnd = false;
 
 function updateScore() {
   var gameScore = document.getElementById("gameScore");
@@ -125,10 +128,27 @@ function updateScore() {
 
   // Aggiungi qui la logica per aggiornare il punteggio
   // Ad esempio, aumenta il punteggio di 50 punti ogni secondo se l'obiettivo è colpito
+  setInterval(function () {
+    console.log("Intervallo eseguito");
+    var line = document.getElementById("line");
+    var target = document.getElementById("target");
+
+    var lineRect = line.getBoundingClientRect();
+    var targetRect = target.getBoundingClientRect();
+
+    if (
+      lineRect.bottom >= targetRect.top &&
+      lineRect.top <= targetRect.bottom &&
+      lineRect.left < targetRect.right &&
+      lineRect.right > targetRect.left
+    ) {
+      currentScore += 25;
+      gameScore.innerText = `Punteggio: ${currentScore}`;
+    }
+  }, 1000);
 }
 
 // Chiamata iniziale per impostare il punteggio a 0
-// updateScore();
 
 function hitTarget() {
   currentScore += 50;
@@ -141,7 +161,7 @@ function placeTargetRandomly() {
   var gameContainer = document.getElementById("gameContainer");
 
   var maxWidth = gameContainer.offsetWidth - target.offsetWidth;
-  var maxHeight = gameContainer.offsetHeight - target.offsetHeight;
+  var maxHeight = gameContainer.offsetHeight - target.offsetHeight - 200; // KomMa dice: Ho sottratto 200 px all'alltezza dell'oggetto window in maniera tale che il water non possa spawnare sotto alla pisica.
 
   var randomX = Math.random() * maxWidth;
   var randomY = Math.random() * maxHeight;
@@ -275,7 +295,6 @@ function endGame() {
   document.getElementById("gameContainer").style.display = "none";
 
   // Imposta i valori finali di tempo e punteggio
-  document.getElementById("finalTime").textContent = `Time: 00 sec`;
   document.getElementById("finalScore").textContent = `Score: ${currentScore}`;
 
   // Dopo 3 secondi, nasconde la schermata di game over e mostra il menu

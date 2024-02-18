@@ -363,7 +363,7 @@ body {
   height: 100vh;
   background-color: grey; /* o qualsiasi altro colore desideri */
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   justify-content: center;
   align-items: center;
   color: red; /* per il testo GAME OVER */
