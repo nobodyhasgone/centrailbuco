@@ -92,7 +92,7 @@
     <div id="gameContainer" style="display: none">
       <!-- Il container del gioco verrà riempito da createBackgroundSquares() -->
       <div id="line"></div>
-      <img id="target" src="./images/wc-sm.svg" alt="Bersaglio" />
+      <img id="target" src="./images/water.png" alt="Bersaglio" />
       <div id="countdownCircle" style="display: none">
         <!-- Conto alla rovescia -->
       </div>
@@ -100,6 +100,10 @@
       <!-- Elemento per il timer del gioco -->
       <div id="gameTimer"></div>
       <div id="gameScore"></div>
+      <div id="alertMessage" style="display: none">Cazzo premi</div>
+      <div id="alertMessage2" style="display: none">
+        Qual e' quel gabinetto che diventa famoso? Quello che ha successo.
+      </div>
     </div>
     <!-- Sezione Game Over -->
     <div id="gameOverScreen" style="display: none">
@@ -108,6 +112,20 @@
       <p id="finalTime"></p>
       <p id="finalScore"></p>
       <!-- Aggiungi qui altri elementi se necessario -->
+    </div>
+    <div id="recordSection" style="display: none">
+      <h1>WORK IN PROGRESS</h1>
+      <!-- Codice iframe di YouTube -->
+      <iframe
+        width="300"
+        height="300"
+        src="https://www.youtube.com/embed/88uS7kF1mDo?si=ua7bmzYDX4j9of7f"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+      <button id="exitButton">Exit</button>
     </div>
 
     <script src="script.js"></script>

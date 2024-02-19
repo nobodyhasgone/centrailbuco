@@ -58,7 +58,7 @@ function createBackgroundSquares(container) {
 }
 
 function calculateNumberOfSquares() {
-  const squareSize = 50;
+  const squareSize = 90;
   const containerWidth = window.innerWidth;
   const containerHeight = window.innerHeight;
   const squaresPerRow = Math.floor(containerWidth / squareSize);
@@ -121,6 +121,26 @@ var currentScore = 0;
 let isTouching = false;
 let lineEnd = false;
 
+document
+  .getElementById("gameTimer")
+  .addEventListener("touchstart", function () {
+    var alertDiv = document.getElementById("alertMessage");
+    alertDiv.style.display = "block";
+
+    setTimeout(function () {
+      alertDiv.style.display = "none";
+    }, 2000); // L'avviso scompare dopo 2 secondi
+  });
+document
+  .getElementById("gameScore")
+  .addEventListener("touchstart", function () {
+    var alertDiv = document.getElementById("alertMessage2");
+    alertDiv.style.display = "block";
+
+    setTimeout(function () {
+      alertDiv.style.display = "none";
+    }, 2000); // L'avviso scompare dopo 2 secondi
+  });
 function updateScore() {
   var gameScore = document.getElementById("gameScore");
   gameScore.innerText = `Punteggio: ${currentScore}`;
@@ -188,8 +208,29 @@ document
   .getElementById("exitCreditsButton")
   .addEventListener("touchend", hideCredits);
 
+document
+  .getElementById("recordLink")
+  .addEventListener("touchstart", showRecords);
+document.getElementById("exitButton").addEventListener("touchend", function () {
+  document.getElementById("recordSection").style.display = "none"; // Nasconde la sezione dei record
+  document.getElementById("mainMenu").style.display = "flex"; // Mostra il menu principale
+});
+
 function showRecords() {
-  // Logica per mostrare i record delle partite
+  // Seleziona la sezione dei record utilizzando il suo ID
+  var recordSection = document.getElementById("recordSection");
+
+  // Rendi visibile la sezione dei record
+  recordSection.style.display = "block";
+
+  // Opzionalmente, nascondi altre sezioni che non dovrebbero essere visibili
+  // quando i record sono mostrati. Ad esempio:
+  document.getElementById("mainMenu").style.display = "none";
+  document.getElementById("gameContainer").style.display = "none";
+  // ... altri elementi o sezioni da nascondere ...
+
+  // Qui puoi anche inserire qualsiasi altra logica necessaria,
+  // come caricare o aggiornare i dati dei record.
 }
 
 // Funzione per mostrare la sezione How To Play

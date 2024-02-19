@@ -5,7 +5,8 @@
   padding: 0;
 }
 body {
-  overflow-y: hidden;
+  height: 90dvh;
+  overflow: hidden;
 }
 /* Stili per lo schermo di caricamento */
 #loadingScreen {
@@ -264,15 +265,22 @@ body {
 }
 #gameContainer {
   display: none;
-  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-  gap: 1px;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100vh;
+  grid-template-columns: repeat(auto-fit, 90px);
+  background-color: #000000;
 }
 
 .game-square {
-  width: 50px;
-  height: 50px;
-  background-color: #ddd;
-  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  background-color: #353434;
+  background-image: url(./images/square.png);
+  background-size: 100px 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: black 2px solid;
 }
 
 /* Stili per il cerchio del conto alla rovescia */
@@ -300,6 +308,9 @@ body {
   font-size: 25px;
   color: #1ceb0d;
   display: none; /* Inizialmente nascosto */
+  background-color: #000000;
+  padding: 8px;
+  border-radius: 5px;
 }
 
 /* Stile per il conteggio punti del gioco */
@@ -310,9 +321,59 @@ body {
   font-size: 25px;
   color: #1ceb0d;
   display: none; /* Inizialmente nascosto */
+  background-color: #000000;
+  padding: 8px;
+  border-radius: 5px;
   /* Altri stili come colore, sfondo, ecc. */
 }
-
+#alertMessage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  /* Creazione della coda della nuvoletta */
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -20px; /* Regola questa posizione secondo le tue esigenze */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+  }
+}
+#alertMessage2 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  /* Creazione della coda della nuvoletta */
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -20px; /* Regola questa posizione secondo le tue esigenze */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+  }
+}
 /*stile della linea*/
 #line {
   position: absolute;
@@ -327,11 +388,11 @@ body {
 /*water*/
 #target {
   position: absolute;
-  width: 50px; /* Dimensione iniziale */
+  width: 100px; /* Dimensione iniziale */
   height: auto; /* Mantiene le proporzioni dell'immagine */
   /* Posizione iniziale: definire top e left */
-  top: 50px;
-  right: 300px;
+  top: 100px;
+  bottom: 100px;
 }
 
 /*bottone di permesso al utilizzo del giroscopio*/
@@ -379,5 +440,40 @@ body {
   color: green; /* per il testo del tempo e del punteggio */
 }
 #finalScore {
-  font-size: 3vh;
+  font-size: 5vh;
+}
+
+#recordSection {
+  display: none; /* Inizialmente nascosta, verrà mostrata tramite JavaScript */
+  position: fixed; /* O absolute, a seconda di come vuoi posizionarla */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* O la larghezza che preferisci */
+  max-width: 600px; /* Per evitare che diventi troppo larga su schermi grandi */
+  height: auto; /* Altezza automatica in base al contenuto */
+  background-color: #f9f9f9; /* Scegli un colore di sfondo */
+  border: 1px solid #ddd; /* Bordo sottile per definire la sezione */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ombra leggera per profondità */
+  padding: 20px; /* Spazio interno per non attaccare il contenuto ai bordi */
+  overflow-y: auto; /* Permette lo scrolling se il contenuto è troppo lungo */
+  z-index: 1000; /* Assicurati che sia sopra agli altri elementi della pagina */
+}
+
+/* Stili aggiuntivi per titoli, testi, liste, ecc. all'interno di #recordSection */
+#recordSection h2 {
+  color: #333;
+  text-align: center;
+}
+
+/* Puoi aggiungere altri stili specifici per gli elementi all'interno della sezione dei record */
+#exitButton {
+  /* Stili per il bottone Exit */
+  padding: 10px 20px;
+  background-color: #f44336; /* Colore rosso per il bottone di uscita */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px; /* Margin per distanziarlo dal resto del contenuto */
 }
