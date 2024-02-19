@@ -363,7 +363,7 @@ body {
   height: 100vh;
   background-color: grey; /* o qualsiasi altro colore desideri */
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: red; /* per il testo GAME OVER */
@@ -377,4 +377,7 @@ body {
 #gameOverScreen p {
   font-size: 3vh; /* Regola a seconda delle tue esigenze */
   color: green; /* per il testo del tempo e del punteggio */
+}
+#finalScore {
+  font-size: 3vh;
 }
